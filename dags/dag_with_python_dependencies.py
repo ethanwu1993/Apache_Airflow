@@ -13,8 +13,6 @@ default_args = {
 def get_sklearn():
     print(f"sklearn version: {sklearn.__version__}")
 
-
-
 def get_mat():
     print(f"mat version: {matplotlib.__version__}")
 
