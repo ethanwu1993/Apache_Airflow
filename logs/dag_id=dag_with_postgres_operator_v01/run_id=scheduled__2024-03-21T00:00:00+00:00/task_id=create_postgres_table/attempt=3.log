@@ -1,0 +1,48 @@
+[2024-03-28T02:19:32.176+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_with_postgres_operator_v01.create_postgres_table scheduled__2024-03-21T00:00:00+00:00 [queued]>
+[2024-03-28T02:19:32.181+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_with_postgres_operator_v01.create_postgres_table scheduled__2024-03-21T00:00:00+00:00 [queued]>
+[2024-03-28T02:19:32.182+0000] {taskinstance.py:2193} INFO - Starting attempt 3 of 7
+[2024-03-28T02:19:32.190+0000] {taskinstance.py:2217} INFO - Executing <Task(PostgresOperator): create_postgres_table> on 2024-03-21 00:00:00+00:00
+[2024-03-28T02:19:32.194+0000] {standard_task_runner.py:60} INFO - Started process 1234 to run task
+[2024-03-28T02:19:32.197+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'dag_with_postgres_operator_v01', 'create_postgres_table', 'scheduled__2024-03-21T00:00:00+00:00', '--job-id', '174', '--raw', '--subdir', 'DAGS_FOLDER/docker_with_postgres.py', '--cfg-path', '/tmp/tmpjqvy2jnr']
+[2024-03-28T02:19:32.198+0000] {standard_task_runner.py:88} INFO - Job 174: Subtask create_postgres_table
+[2024-03-28T02:19:32.228+0000] {task_command.py:423} INFO - Running <TaskInstance: dag_with_postgres_operator_v01.create_postgres_table scheduled__2024-03-21T00:00:00+00:00 [running]> on host 6ba63bfba168
+[2024-03-28T02:19:32.277+0000] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='ethan_wu' AIRFLOW_CTX_DAG_ID='dag_with_postgres_operator_v01' AIRFLOW_CTX_TASK_ID='create_postgres_table' AIRFLOW_CTX_EXECUTION_DATE='2024-03-21T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='3' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-03-21T00:00:00+00:00'
+[2024-03-28T02:19:32.278+0000] {sql.py:276} INFO - Executing: 
+            create table if not exists dag_runs (
+                dt date,
+                dag_id charater varying,
+                primary key (dt, dag_id)
+            )
+            
+[2024-03-28T02:19:32.284+0000] {base.py:83} INFO - Using connection ID 'postgres_localhost' for task execution.
+[2024-03-28T02:19:32.291+0000] {base.py:83} INFO - Using connection ID 'postgres_localhost' for task execution.
+[2024-03-28T02:19:32.298+0000] {sql.py:457} INFO - Running statement: 
+            create table if not exists dag_runs (
+                dt date,
+                dag_id charater varying,
+                primary key (dt, dag_id)
+            )
+            , parameters: None
+[2024-03-28T02:19:32.300+0000] {taskinstance.py:2731} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 444, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 414, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/common/sql/operators/sql.py", line 282, in execute
+    output = hook.run(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/common/sql/hooks/sql.py", line 404, in run
+    self._run_command(cur, sql_statement, parameters)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/common/sql/hooks/sql.py", line 462, in _run_command
+    cur.execute(sql_statement)
+psycopg2.errors.SyntaxError: syntax error at or near "varying"
+LINE 4:                 dag_id charater varying,
+                                        ^
+
+[2024-03-28T02:19:32.305+0000] {taskinstance.py:1149} INFO - Marking task as UP_FOR_RETRY. dag_id=dag_with_postgres_operator_v01, task_id=create_postgres_table, execution_date=20240321T000000, start_date=20240328T021932, end_date=20240328T021932
+[2024-03-28T02:19:32.312+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 174 for task create_postgres_table (syntax error at or near "varying"
+LINE 4:                 dag_id charater varying,
+                                        ^
+; 1234)
+[2024-03-28T02:19:32.329+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2024-03-28T02:19:32.340+0000] {taskinstance.py:3312} INFO - 0 downstream tasks scheduled from follow-on schedule check

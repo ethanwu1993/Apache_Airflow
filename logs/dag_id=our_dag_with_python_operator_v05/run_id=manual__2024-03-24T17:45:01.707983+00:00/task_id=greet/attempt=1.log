@@ -1,0 +1,14 @@
+[2024-03-24T17:45:03.640+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: our_dag_with_python_operator_v05.greet manual__2024-03-24T17:45:01.707983+00:00 [queued]>
+[2024-03-24T17:45:03.645+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: our_dag_with_python_operator_v05.greet manual__2024-03-24T17:45:01.707983+00:00 [queued]>
+[2024-03-24T17:45:03.645+0000] {taskinstance.py:2193} INFO - Starting attempt 1 of 6
+[2024-03-24T17:45:03.651+0000] {taskinstance.py:2217} INFO - Executing <Task(PythonOperator): greet> on 2024-03-24 17:45:01.707983+00:00
+[2024-03-24T17:45:03.653+0000] {standard_task_runner.py:60} INFO - Started process 853 to run task
+[2024-03-24T17:45:03.656+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'our_dag_with_python_operator_v05', 'greet', 'manual__2024-03-24T17:45:01.707983+00:00', '--job-id', '38', '--raw', '--subdir', 'DAGS_FOLDER/create_dag_with_python_operator.py', '--cfg-path', '/tmp/tmp7eq8lcpp']
+[2024-03-24T17:45:03.657+0000] {standard_task_runner.py:88} INFO - Job 38: Subtask greet
+[2024-03-24T17:45:03.681+0000] {task_command.py:423} INFO - Running <TaskInstance: our_dag_with_python_operator_v05.greet manual__2024-03-24T17:45:01.707983+00:00 [running]> on host 0277b3465f8e
+[2024-03-24T17:45:03.721+0000] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Ethan' AIRFLOW_CTX_DAG_ID='our_dag_with_python_operator_v05' AIRFLOW_CTX_TASK_ID='greet' AIRFLOW_CTX_EXECUTION_DATE='2024-03-24T17:45:01.707983+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-03-24T17:45:01.707983+00:00'
+[2024-03-24T17:45:03.730+0000] {logging_mixin.py:188} INFO - Hello World! My name is Jerry Fridman, and I am 20 years old.
+[2024-03-24T17:45:03.730+0000] {python.py:202} INFO - Done. Returned value was: None
+[2024-03-24T17:45:03.735+0000] {taskinstance.py:1149} INFO - Marking task as SUCCESS. dag_id=our_dag_with_python_operator_v05, task_id=greet, execution_date=20240324T174501, start_date=20240324T174503, end_date=20240324T174503
+[2024-03-24T17:45:03.749+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2024-03-24T17:45:03.759+0000] {taskinstance.py:3312} INFO - 0 downstream tasks scheduled from follow-on schedule check

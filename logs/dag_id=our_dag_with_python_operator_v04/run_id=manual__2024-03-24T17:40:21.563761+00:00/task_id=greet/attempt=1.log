@@ -1,0 +1,28 @@
+[2024-03-24T17:40:22.922+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: our_dag_with_python_operator_v04.greet manual__2024-03-24T17:40:21.563761+00:00 [queued]>
+[2024-03-24T17:40:22.926+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: our_dag_with_python_operator_v04.greet manual__2024-03-24T17:40:21.563761+00:00 [queued]>
+[2024-03-24T17:40:22.926+0000] {taskinstance.py:2193} INFO - Starting attempt 1 of 6
+[2024-03-24T17:40:22.932+0000] {taskinstance.py:2217} INFO - Executing <Task(PythonOperator): greet> on 2024-03-24 17:40:21.563761+00:00
+[2024-03-24T17:40:22.934+0000] {standard_task_runner.py:60} INFO - Started process 669 to run task
+[2024-03-24T17:40:22.937+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'our_dag_with_python_operator_v04', 'greet', 'manual__2024-03-24T17:40:21.563761+00:00', '--job-id', '31', '--raw', '--subdir', 'DAGS_FOLDER/create_dag_with_python_operator.py', '--cfg-path', '/tmp/tmpvzknkn_h']
+[2024-03-24T17:40:22.938+0000] {standard_task_runner.py:88} INFO - Job 31: Subtask greet
+[2024-03-24T17:40:22.962+0000] {task_command.py:423} INFO - Running <TaskInstance: our_dag_with_python_operator_v04.greet manual__2024-03-24T17:40:21.563761+00:00 [running]> on host 0277b3465f8e
+[2024-03-24T17:40:22.998+0000] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Ethan' AIRFLOW_CTX_DAG_ID='our_dag_with_python_operator_v04' AIRFLOW_CTX_TASK_ID='greet' AIRFLOW_CTX_EXECUTION_DATE='2024-03-24T17:40:21.563761+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-03-24T17:40:21.563761+00:00'
+[2024-03-24T17:40:22.999+0000] {taskinstance.py:2731} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 444, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 414, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 200, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 217, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/create_dag_with_python_operator.py", line 13, in greet
+    name = ti.xcom_pull(task_id='get_name')
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/session.py", line 79, in wrapper
+    return func(*args, session=session, **kwargs)
+TypeError: xcom_pull() got an unexpected keyword argument 'task_id'
+[2024-03-24T17:40:23.003+0000] {taskinstance.py:1149} INFO - Marking task as UP_FOR_RETRY. dag_id=our_dag_with_python_operator_v04, task_id=greet, execution_date=20240324T174021, start_date=20240324T174022, end_date=20240324T174023
+[2024-03-24T17:40:23.008+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 31 for task greet (xcom_pull() got an unexpected keyword argument 'task_id'; 669)
+[2024-03-24T17:40:23.032+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2024-03-24T17:40:23.042+0000] {taskinstance.py:3312} INFO - 0 downstream tasks scheduled from follow-on schedule check
